@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>نظام الأساس لإدارة المدارس</title>
+  <meta name="description" content="Al-Asas School Management System — نظام إدارة مدرسي يعمل بالكامل داخل المتصفح">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f8cff'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3E%D8%A3%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <!-- Boot / loading screen -->
+  <div id="boot" class="boot">
+    <div class="boot-card">
+      <div class="logo-mark">أ</div>
+      <h1>نظام الأساس لإدارة المدارس</h1>
+      <p id="boot-msg">جارٍ تحميل قاعدة البيانات…</p>
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <!-- Login -->
+  <section id="login-view" class="login-view" hidden>
+    <form id="login-form" class="login-card" novalidate>
+      <div class="logo-mark">أ</div>
+      <h1>نظام الأساس لإدارة المدارس</h1>
+      <p class="muted">Al-Asas School Management System</p>
+      <div class="field">
+        <label for="login-email">البريد الإلكتروني</label>
+        <input id="login-email" name="email" type="email" autocomplete="username" dir="ltr" placeholder="admin@school.edu">
+        <small class="err"></small>
+      </div>
+      <div class="field">
+        <label for="login-password">كلمة المرور</label>
+        <input id="login-password" name="password" type="password" autocomplete="current-password" dir="ltr">
+        <small class="err"></small>
+      </div>
+      <div id="login-error" class="alert alert-danger" hidden></div>
+      <button class="btn btn-primary btn-block" type="submit">تسجيل الدخول</button>
+      <p class="hint">الحساب الافتراضي: <code dir="ltr">admin@school.edu</code> / <code dir="ltr">123456</code></p>
+    </form>
+  </section>
+
+  <!-- App shell -->
+  <div id="app-view" class="app" hidden>
+    <aside id="sidebar" class="sidebar">
+      <div class="brand">
+        <div class="logo-mark sm">أ</div>
+        <div>
+          <strong>الأساس</strong>
+          <small>إدارة المدارس</small>
+        </div>
+      </div>
+      <nav id="nav" class="nav"></nav>
+      <div class="sidebar-foot">
+        <div class="me">
+          <div class="avatar" id="me-avatar"></div>
+          <div>
+            <strong id="me-name"></strong>
+            <small id="me-role"></small>
+          </div>
+        </div>
+        <button id="logout-btn" class="btn btn-ghost btn-block" type="button">تسجيل الخروج</button>
+      </div>
+    </aside>
+    <div id="backdrop" class="backdrop"></div>
+    <main class="main">
+      <header class="topbar">
+        <button id="menu-btn" class="icon-btn menu-btn" type="button" aria-label="القائمة">☰</button>
+        <h2 id="page-title"></h2>
+        <div class="topbar-meta">
+          <span id="db-status" class="pill" title="حالة الحفظ في المتصفح">● محفوظ</span>
+        </div>
+      </header>
+      <div id="page" class="page"></div>
+    </main>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <div id="tooltip" class="tooltip" hidden></div>
+
+  <!-- sql.js: local copy first, CDN fallback -->
+  <script src="vendor/sql-wasm.js"></script>
+  <script>
+    if (typeof initSqlJs === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"><\/script>');
+    }
+  </script>
+  <script src="assets/db.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
