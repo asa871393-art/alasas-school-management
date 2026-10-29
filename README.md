@@ -3,6 +3,9 @@
 A single-page school management system that runs entirely in the browser.
 It uses vanilla HTML, CSS and JavaScript, with SQLite through `sql.js`, and persists to `localStorage`.
 
+**Live demo:** https://asa871393-art.github.io/alasas-school-management/
+(each visitor gets their own private database stored in their browser; nothing is shared between visitors)
+
 ## Run
 - Open `index.html` directly. In this mode the SQLite WASM loads from cdnjs, so you need an internet connection.
 - Or serve the folder to run fully offline from the bundled `vendor/` copy: `python -m http.server 8000`, then open http://localhost:8000
